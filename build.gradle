@@ -1,0 +1,36 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+	}
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+	maven {
+		url "https://packages.confluent.io/maven"
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+apply plugin: 'application'
+
+group = 'com.websocket.server'
+version = '1.0.0-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+application {
+	mainClass = 'com.websocket.server.Application'
+}
+
+
+
+dependencies {
+
+}
