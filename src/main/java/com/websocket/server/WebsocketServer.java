@@ -41,6 +41,10 @@ public class WebsocketServer {
                 return false;
             }
             Pattern pattern = Pattern.compile("GET (((/[a-zA-Z]+)+/?)|(/[a-zA-Z]*)) HTTP/(1\\.1|2\\.0|3\\.0)");
+            if (!pattern.matcher(nextLine).matches()) {
+                return false;
+            }
+            
 
         } catch (Exception ex) {
             System.out.println("An exception occurs during close the socket, exception is: " + ex);

@@ -29,8 +29,13 @@ application {
 	mainClass = 'com.websocket.server.Application'
 }
 
-
+ext {
+	lombokVersion = "1.18.30"
+}
 
 dependencies {
+	compileOnly("org.projectlombok:lombok:${lombokVersion}")
+	annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
 
+	implementation("commons-codec:commons-codec:1.17.1");
 }
