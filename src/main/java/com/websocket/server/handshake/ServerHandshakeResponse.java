@@ -30,4 +30,15 @@ public class ServerHandshakeResponse {
             .getBytes(StandardCharsets.UTF_8));
         return Base64.getEncoder().encodeToString(sha1HashKey);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(String.format("%s\n", headerLine));
+        builder.append(String.format("Upgrade: %s\n", upgrade));
+        builder.append(String.format("Connection: %s\n", connection));
+        builder.append(String.format("Sec-WebSocket-Accept: %s\n", secWebsocketAccept));
+        builder.append("\n");
+        return builder.toString();
+    }
 }

@@ -86,4 +86,13 @@ public class ClientHandshakeRequest {
             throw new HandshakeException(HttpStatus.BAD_REQUEST, "Sec-WebSocket-Version header field: Not supported version");
         }
     }
+
+    public boolean containsAllRequiredHeaders() {
+        return !headerLine.isEmpty()
+            && !host.isEmpty()
+            && !upgrade.isEmpty()
+            && !connection.isEmpty()
+            && !secWebsocketKey.isEmpty()
+            && !secWebsocketVersion.isEmpty();
+    }
 }
