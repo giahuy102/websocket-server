@@ -37,7 +37,7 @@ public class ClientHandshakeRequest {
         String domain;
         int port;
         domain = domainAndPort[0];
-        if (domain != ServerConfig.HOST) {
+        if (!domain.equals(ServerConfig.HOST)) {
             throw new HandshakeException(HttpStatus.BAD_REQUEST, "Host header field: Incorrect domain");
         }
         if (domainAndPort.length == 2) {
@@ -56,15 +56,17 @@ public class ClientHandshakeRequest {
     }
 
     public void setUpgrade(String upgrade) {
-        if (upgrade != "websocket") {
+        if (!upgrade.equals("websocket")) {
             throw new HandshakeException(HttpStatus.BAD_REQUEST, "Upgrade header field: Must be websocket");
         }
+        this.upgrade = upgrade;
     }
 
     public void setConnection(String connection) {
-        if (connection != "Upgrade") {
+        if (!connection.equals("Upgrade")) {
             throw new HandshakeException(HttpStatus.BAD_REQUEST, "Upgrade header field: Must be Upgrade");
         }
+        this.connection = connection;
     }
 
     public void setSecWebsocketKey(String secWebsocketKey) {
@@ -73,6 +75,7 @@ public class ClientHandshakeRequest {
         } catch (IllegalArgumentException e) {
             throw new HandshakeException(HttpStatus.BAD_REQUEST, "Sec-WebSocket-Key header field: Must in valid base64 encoded format");
         }
+        this.secWebsocketKey = secWebsocketKey;
     }
 
     public void setSecWebsocketVersion(String secWebsocketVersion) {
@@ -85,6 +88,7 @@ public class ClientHandshakeRequest {
         if (version != ServerConfig.WEBSOCKET_VERSION) {
             throw new HandshakeException(HttpStatus.BAD_REQUEST, "Sec-WebSocket-Version header field: Not supported version");
         }
+        this.secWebsocketVersion = secWebsocketVersion;
     }
 
     public boolean containsAllRequiredHeaders() {

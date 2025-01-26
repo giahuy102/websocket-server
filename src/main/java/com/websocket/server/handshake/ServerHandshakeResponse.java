@@ -34,11 +34,11 @@ public class ServerHandshakeResponse {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(String.format("%s\n", headerLine));
-        builder.append(String.format("Upgrade: %s\n", upgrade));
-        builder.append(String.format("Connection: %s\n", connection));
-        builder.append(String.format("Sec-WebSocket-Accept: %s\n", secWebsocketAccept));
-        builder.append("\n");
+        builder.append(String.format("%s\r\n", headerLine));
+        builder.append(String.format("Upgrade: %s\r\n", upgrade));
+        builder.append(String.format("Connection: %s\r\n", connection));
+        builder.append(String.format("Sec-WebSocket-Accept: %s\r\n", secWebsocketAccept));
+        builder.append("\r\n");
         return builder.toString();
     }
 }
