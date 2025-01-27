@@ -4,14 +4,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import com.websocket.server.constants.HttpStatus;
 import com.websocket.server.exception.HandshakeException;
-import com.websocket.server.http.HttpStatus;
 import com.websocket.server.socket.SocketConnection;
 
 public class HandshakeHandler {
 
-    private ClientHandshakeRequest buildAndValidateClientRequest(SocketConnection connection) throws IOException {
-        ClientHandshakeRequest request = new ClientHandshakeRequest();
+    private SocketConnection connection;
+
+    public HandshakeHandler(SocketConnection connection) {
+        this.connection = connection;
+    }
+
+    private HandshakeRequest buildAndValidateClientRequest() throws IOException {
+        HandshakeRequest request = new HandshakeRequest();
         BufferedReader reader = connection.getBufferedReader();
         String nextLine;
         if ((nextLine = reader.readLine()) == null) {
@@ -54,15 +60,15 @@ public class HandshakeHandler {
         return request;
     }
 
-    private void returnResponse(SocketConnection connection, String clientSecWebsocketKey) {
-        ServerHandshakeResponse response = new ServerHandshakeResponse(clientSecWebsocketKey);
+    private void returnResponse(String clientSecWebsocketKey) {
+        HandshakeResponse response = new HandshakeResponse(clientSecWebsocketKey);
         PrintWriter writer = connection.getPrintWriter();
         writer.print(response.toString());
         writer.flush();
     }
 
-    public void handle(SocketConnection connection) throws IOException {
-        ClientHandshakeRequest request = buildAndValidateClientRequest(connection);
-        returnResponse(connection, request.getSecWebsocketKey());
+    public void handle() throws IOException {
+        HandshakeRequest request = buildAndValidateClientRequest();
+        returnResponse(request.getSecWebsocketKey());
     }
 }

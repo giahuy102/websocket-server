@@ -1,6 +1,6 @@
 package com.websocket.server.exception;
 
-import com.websocket.server.http.HttpStatus;
+import com.websocket.server.constants.HttpStatus;
 
 public class HandshakeException extends HttpException {
 

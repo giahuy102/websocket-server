@@ -1,6 +1,7 @@
 package com.websocket.server.socket;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,11 +29,13 @@ public class SocketConnection implements AutoCloseable {
     private PrintWriter printWriter;
     private InputStreamReader inputStreamReader;
     private OutputStreamWriter outputStreamWriter;
+    private DataInputStream dataInputStream;
 
     public SocketConnection(Socket socket) throws IOException {
         inputStream = socket.getInputStream();
         inputStreamReader = new InputStreamReader(inputStream);
         bufferedReader = new BufferedReader(inputStreamReader);
+        dataInputStream = new DataInputStream(inputStream);
         outputStream = socket.getOutputStream();
         outputStreamWriter = new OutputStreamWriter(outputStream);
         printWriter = new PrintWriter(outputStreamWriter);

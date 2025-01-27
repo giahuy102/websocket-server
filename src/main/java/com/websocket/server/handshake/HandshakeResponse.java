@@ -5,13 +5,13 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
-public class ServerHandshakeResponse {
+public class HandshakeResponse {
     private String headerLine;
     private String upgrade;
     private String connection;
     private String secWebsocketAccept;
 
-    public ServerHandshakeResponse(String secWebsocketKey) {
+    public HandshakeResponse(String secWebsocketKey) {
         headerLine = "HTTP/1.1 101 Switching Protocols";
         upgrade = "websocket";
         connection = "Upgrade";

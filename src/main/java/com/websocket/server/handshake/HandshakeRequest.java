@@ -4,15 +4,15 @@ import java.util.Base64;
 import java.util.regex.Pattern;
 
 import com.websocket.server.config.ServerConfig;
+import com.websocket.server.constants.HttpStatus;
 import com.websocket.server.exception.HandshakeException;
-import com.websocket.server.http.HttpStatus;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class ClientHandshakeRequest {
+public class HandshakeRequest {
 
     private final String REQUEST_LINE_PATTERN = "GET (((/[a-zA-Z]+)+/?)|(/[a-zA-Z]*)) HTTP/(1\\.1|2\\.0|3\\.0)";
 

@@ -11,8 +11,8 @@ public class Application {
 	public static void main(String[] args) throws Exception {
 		try (ServerSocket serverSocket = new ServerSocket(ServerConfig.PORT);
 			SocketConnection socketConnection = new SocketConnection(serverSocket.accept())) {
-			HandshakeHandler handler = new HandshakeHandler();
-			handler.handle(socketConnection);
+			HandshakeHandler handler = new HandshakeHandler(socketConnection);
+			handler.handle();
 		}
 	}
 }

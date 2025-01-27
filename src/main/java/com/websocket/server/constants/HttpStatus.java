@@ -1,4 +1,4 @@
-package com.websocket.server.http;
+package com.websocket.server.constants;
 
 public enum HttpStatus {
     CONTINUE(100, "Continue"),
