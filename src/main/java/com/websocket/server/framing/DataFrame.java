@@ -1,19 +1,21 @@
 package com.websocket.server.framing;
 
-import java.math.BigInteger;
-
 import com.websocket.server.constants.WebsocketStatus;
 import com.websocket.server.exception.DataFrameException;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class DataFrame {
     private boolean sendByClient;
     private boolean isFinalFragment;
     private boolean isMask;
     private String payloadType;
-    private BigInteger payloadLengthInBytes;
+    private long payloadLengthInBytes;
+    private int maskingKey;
+    private String payload;
     
     public DataFrame(boolean sendByClient) {
         this.sendByClient = sendByClient;
